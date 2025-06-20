@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noroz Ahmed - Software Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            -webkit-font-smoothing: antialiased;
+            letter-spacing: 0.01em;
+        }
+        h1, h2, h3 {
+            font-family: 'Poppins', 'Inter', sans-serif;
+            letter-spacing: 0.02em;
+        }
+        /* Custom scrollbar for a sleek look */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #64748b;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        /* Glassmorphism effect for cards */
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        /* Tailwind CSS component styles for reusability */
+        .skill-tag {
+            @apply bg-gradient-to-r from-blue-600 to-blue-400 text-white px-6 py-2 rounded-full text-sm font-medium shadow-md transition duration-700 ease-in-out cursor-pointer tracking-wide whitespace-nowrap;
+            min-width: max-content;
+        }
+        .skills-track {
+            display: flex;
+            width: fit-content;
+            animation: scroll 25s linear infinite;
+            cursor: grab;
+        }
+        .skills-track:active {
+            cursor: grabbing;
+            animation-play-state: paused;
+        }
+        .skills-slider {
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+        }
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        /* Pause animation on hover/touch */
+        .skills-track:hover {
+            animation-play-state: paused;
+        }
+        .project-card {
+            @apply bg-slate-700/80 p-6 rounded-full shadow-xl border border-slate-600 flex flex-col items-center text-center transition duration-1000 ease-in-out;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+            backdrop-filter: blur(6px);
+            padding: 5px;
+            gap: 1rem;
+            transition: box-shadow 1s cubic-bezier(0.4,0,0.2,1), border-color 1s cubic-bezier(0.4,0,0.2,1), transform 1s cubic-bezier(0.4,0,0.2,1);
+            border-radius: 9px;
+        }
+        .project-card:hover {
+            box-shadow: 0 0 24px 0 rgba(56,189,248,0.35), 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+            border-color: rgb(56,189,248);
+            transform: translateY(-8px);
+            border-radius: 10px;
+        }
+        .project-link {
+            @apply mt-auto bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out relative overflow-hidden;
+        }
+        .project-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, rgb(56,189,248), rgb(59,130,246));
+            box-shadow: 0 0 8px 2px rgba(56,189,248,0.3);
+            border-radius: 2px;
+            transform: scaleX(0);
+            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+        .project-link:hover::after {
+            transform: scaleX(1);
+        }
+        /* Base link styling for navigation and other general links */
+        a {
+            transition: color 0.2s, text-decoration 0.2s;
+        }
+        a:hover {
+            color: rgb(56,189,248);
+        }
+
+        /* Custom style for animated underline on hover (for contact links) */
+        .animated-underline {
+            position: relative; /* Needed for pseudo-element positioning */
+            display: inline-block; /* Allows underline to fit content */
+            text-decoration: none; /* Remove default underline */
+            color: rgb(56,189,248); /* Initial color, similar to project link text */
+            transition: color 0.2s; /* Smooth color transition */
+        }
+
+        .animated-underline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px; /* Adjust as needed for underline position */
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, rgb(56,189,248), rgb(59,130,246));
+            box-shadow: 0 0 8px 2px rgba(56,189,248,0.3);
+            border-radius: 2px;
+            transform: scaleX(0);
+            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .animated-underline:hover::after {
+            transform: scaleX(1);
+        }
+
+        .animated-underline:hover {
+            color: rgb(56,189,248); /* Ensure hover color is consistent */
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen flex flex-col items-center py-2 px-4 sm:px-2 lg:px-4 xl:px-8">
+
+        <nav class="w-full mt-auto mx-auto glass flex items-center justify-between px-8 py-2 mb-8 rounded-2xl shadow-xl border border-slate-700 sticky top-0.5 z-50 backdrop-blur-lg">
+            <div class="text-2xl font-extrabold text-blue-400 tracking-wide" style="font-family: 'Poppins', 'Inter', sans-serif;">Noroz Ahmed</div>
+            <div class="hidden md:flex space-x-8 text-lg font-medium">
+                <a href="#" class="hover:text-blue-400 transition">Home</a>
+                <a href="#about" class="hover:text-blue-400 transition">About Me</a>
+                <a href="#skills" class="hover:text-blue-400 transition">Skills</a>
+                <a href="#projects" class="hover:text-blue-400 transition">Projects</a>
+                <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
+            </div>
+            <div class="md:hidden flex items-center">
+                <button id="nav-toggle" class="text-blue-400 focus:outline-none text-3xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <div id="nav-menu" class="md:hidden fixed top-0 left-0 w-full h-full bg-slate-900/80 z-50 hidden">
+            <div class="flex flex-col items-center justify-center h-full space-y-8">
+                <a href="#" class="text-2xl font-bold text-blue-300 hover:text-blue-400" onclick="toggleNav()">Home</a>
+                <a href="#about" class="text-2xl font-bold text-blue-300 hover:text-blue-400" onclick="toggleNav()">About Me</a>
+                <a href="#skills" class="text-2xl font-bold text-blue-300 hover:text-blue-400" onclick="toggleNav()">Skills</a>
+                <a href="#projects" class="text-2xl font-bold text-blue-300 hover:text-blue-400" onclick="toggleNav()">Projects</a>
+                <a href="#contact" class="text-2xl font-bold text-blue-300 hover:text-blue-400" onclick="toggleNav()">Contact</a>
+                <button onclick="toggleNav()" class="mt-8 text-slate-400 hover:text-blue-400 text-lg">Close</button>
+            </div>
+        </div>
+        <script>
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            function toggleNav() {
+                navMenu.classList.toggle('hidden');
+            }
+            navToggle.addEventListener('click', toggleNav);
+        </script>
+
+        <header class="text-center mb-12">
+            <h1 class="text-5xl sm:text-6xl font-extrabold text-blue-400 mb-4 rounded-lg drop-shadow-lg tracking-wide" style="font-family: 'Poppins', 'Inter', sans-serif;">Noroz Ahmed</h1>
+            <p class="text-xl sm:text-2xl font-medium text-gray-300 tracking-wide">Entry-Level Software Developer & Web Enthusiast</p>
+            <div class="mt-6 flex justify-center">
+                <img src="images/Profile/MyIMG.jpg" alt="Image/Logo" class="mx-auto max-w-4xl h-40 rounded-full border-4 border-blue-500 shadow-2xl transition-transform duration-500 hover:scale-105 hover:shadow-blue-400/60 hover:border-blue-300">
+            </div>
+        </header>
+
+        <section id="about" class="w-full max-w-4xl glass p-8 rounded-2xl shadow-2xl mb-12 border border-slate-700 scroll-mt-14">
+            <h2 class="text-3xl font-bold text-blue-300 mb-6 text-center" style="font-family: 'Poppins', 'Inter', sans-serif;">About Me</h2>
+            <p class="text-lg leading-relaxed text-slate-300 mb-4">
+                Hello! I'm Noroz Ahmed, an enthusiastic and passionate entry-level Software Developer with foundational skills in web development, Python, and IT. My academic background includes an Advanced Diploma in Software Engineering (ADSE II) from Aptech SFC, where I've gained hands-on experience in building software and exploring new technologies.
+            </p>
+            <p class="text-lg leading-relaxed text-slate-300 mb-4">
+                I specialize in front-end web development, creating responsive web layouts using HTML, CSS, and JavaScript. I also have strong programming skills in Python, having developed various projects and explored generative AI applications. My certifications include Python from Kaggle Learn and an intensive Generative AI Mastermind course.
+            </p>
+            <p class="text-lg leading-relaxed text-slate-300">
+                Beyond coding, I have a keen interest in sketching, painting, and art, including pencil sketching and watercolor. This creative passion complements my technical work, allowing me to approach problem-solving with a unique perspective. I am eager to contribute to innovative projects and grow professionally in a collaborative environment, leveraging my skills to deliver high-quality work and help clients achieve their goals.
+            </p>
+        </section>
+
+        <section id="skills" class="w-full max-w-4xl glass p-8 rounded-2xl shadow-2xl mb-12 border border-slate-700 scroll-mt-14">
+            <h2 class="text-3xl font-bold text-blue-300 mb-6 text-center" style="font-family: 'Poppins', 'Inter', sans-serif;">Skills</h2>
+            <div class="relative overflow-hidden w-full">
+                <div class="skills-track flex" id="skillsTrack">
+                    <div class="skills-slider flex items-center gap-6 animate-scroll" id="skillsSlider">
+                        <span class="skill-tag">Web Development</span>
+                        <span class="skill-tag">Web Designing</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Generative AI Basics</span>
+                        <span class="skill-tag">IT Support</span>
+                        <span class="skill-tag">MS Office</span>
+                        <span class="skill-tag">MS Excel</span>
+                        <span class="skill-tag">MYSQL Basics</span>
+                    </div>
+                    <div class="skills-slider flex items-center gap-6 animate-scroll" aria-hidden="true">
+                        <span class="skill-tag">Web Development</span>
+                        <span class="skill-tag">Web Designing</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Generative AI Basics</span>
+                        <span class="skill-tag">IT Support</span>
+                        <span class="skill-tag">MS Office</span>
+                        <span class="skill-tag">MS Excel</span>
+                        <span class="skill-tag">MYSQL Basics</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="w-full max-w-4xl glass p-8 rounded-2xl shadow-2xl mb-12 border border-slate-700 scroll-mt-14">
+            <h2 class="text-3xl font-bold text-blue-300 mb-8 text-center" style="font-family: 'Poppins', 'Inter', sans-serif;">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <div class="project-card group">
+                    <h3 class="text-xl font-semibold text-blue-200 mb-3">Personal Portfolio Website</h3>
+                    <img src="images/port_image.png" alt="Personal Portfolio Website" class="w-full h-40 object-cover rounded-md mb-4 shadow-md group-hover:shadow-blue-400/40 transition duration-500">
+                    <p class="text-slate-400 text-sm mb-4">Developed a responsive personal portfolio website using HTML, CSS, and JavaScript to showcase my skills and projects. Demonstrates strong frontend development capabilities and design principles.</p>
+                    <a href="YOUR_GITHUB_REPO_LINK_FOR_PORTFOLIO" target="_blank" class="project-link">View Project on GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3 class="text-xl font-semibold text-blue-200 mb-3">AI Assistant (Python)</h3>
+                    <video controls autoplay loop muted class="w-full h-40 object-cover rounded-md mb-4 shadow-md group-hover:shadow-blue-400/40 transition duration-500">
+                        <source src="images/Ai_Assist.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p class="text-slate-400 text-sm mb-4">Developed an AI assistant using Python, showcasing skills in natural language processing and integration of AI functionalities. Highlights my ability to build interactive and intelligent applications.</p>
+                    <a href="https://github.com/Norozahmed/Ai-Assistant-using-Python" target="_blank" class="project-link">View Project on GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3 class="text-xl font-semibold text-blue-200 mb-3">Quiz Game (HTML)</h3>
+                    <img src="images/quiz-game.png" alt="Quiz Game" class="w-full h-40 object-cover rounded-md mb-4 shadow-md">
+                    <p class="text-slate-400 text-sm mb-4">Created an interactive quiz game using HTML, demonstrating foundational skills in web development and user interface design. Shows my ability to build engaging client-side applications.</p>
+                    <a href="https://github.com/Norozahmed/QUIZ_GAME" target="_blank" class="project-link">View Project on GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3 class="text-xl font-semibold text-blue-200 mb-3">User Authentication System (HTML)</h3>
+                    <img src="images/User_register_final.png" alt="User Authentication System" class="w-full h-40 object-cover rounded-md mb-4 shadow-md">
+                    <p class="text-slate-400 text-sm mb-4">Built a user authentication system using HTML, focusing on front-end design for secure user logins and registrations. Emphasizes my skills in creating basic web forms and handling user input.</p>
+                    <a href="https://github.com/Norozahmed/User-authentication-system" target="_blank" class="project-link">View Project on GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3 class="text-xl font-semibold text-blue-200 mb-3">WhatsApp Automation (Python)</h3>
+                    <img src="images/what_auto.png" alt="WhatsApp Automation Script" class="w-full h-40 object-cover rounded-md mb-4 shadow-md">
+                    <p class="text-slate-400 text-sm mb-4">Developed a Python script for automating WhatsApp tasks, demonstrating practical application of Python for automation and external API interaction.</p>
+                    <a href="https://github.com/Norozahmed/whatsapp-automation-script" target="_blank" class="project-link">View Project on GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3 class="text-xl font-semibold text-blue-200 mb-3">Avoidance Game (Python)</h3>
+                    <img src="images/avoidence_game.png" alt="Avoidance Game" class="w-full h-40 object-cover rounded-md mb-4 shadow-md">
+                    <p class="text-slate-400 text-sm mb-4">Programmed an avoidance game using Python, showcasing object-oriented programming concepts and game development basics in Python.</p>
+                    <a href="https://github.com/Norozahmed/Avoidance-Game_Python" target="_blank" class="project-link">View Project on GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3 class="text-xl font-semibold text-blue-200 mb-3">Squid Game (Python)</h3>
+                    <img src="images/Squid_game.png" alt="Squid Game in Python" class="w-full h-40 object-cover rounded-md mb-4 shadow-md">
+                    <p class="text-slate-400 text-sm mb-4">Recreated elements of the popular "Squid Game" using Python, demonstrating creative problem-solving and Python programming skills in a game context.</p>
+                    <a href="https://github.com/Norozahmed/Squid_Game_in_Python" target="_blank" class="project-link">View Project on GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3 class="text-xl font-semibold text-blue-200 mb-3">To-Do App (HTML)</h3>
+                    <img src="images/todo-app2.png" alt="To-Do App" class="w-full h-40 object-cover rounded-md mb-4 shadow-md">
+                    <p class="text-slate-400 text-sm mb-4">Developed a simple To-Do application using HTML, demonstrating basic web development principles and user interface design for productivity tools.</p>
+                    <a href="https://github.com/Norozahmed/todo-app" target="_blank" class="project-link">View Project on GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3 class="text-xl font-semibold text-blue-200 mb-3">Food Order System (PHP)</h3>
+                    <img src="images/food-order.png" alt="Food Order System" class="w-full h-40 object-cover rounded-md mb-4 shadow-md">
+                    <p class="text-slate-400 text-sm mb-4">Developed a food order system using PHP, demonstrating basic backend development skills and database interaction for web applications.</p>
+                    <a href="https://github.com/Norozahmed/food_order" target="_blank" class="project-link">View Project on GitHub</a>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contact" class="w-full max-w-4xl glass p-8 rounded-2xl shadow-2xl mb-12 border border-slate-700 text-center scroll-mt-14">
+            <h2 class="text-3xl font-bold text-blue-300 mb-6" style="font-family: 'Poppins', 'Inter', sans-serif;">Contact Me</h2>
+            <p class="text-lg text-slate-300 mb-4">I'm excited to collaborate on new projects and explore opportunities. Feel free to reach out!</p>
+            <div class="space-y-4">
+                <p class="text-xl text-slate-200"><strong class="text-blue-400">Email:</strong> <a href="mailto:norozahmed2003@gmail.com" class="animated-underline">norozahmed2003@gmail.com</a></p>
+                <p class="text-xl text-slate-200"><strong class="text-blue-400">Phone:</strong> +968 9724 5182</p>
+                <p class="text-xl text-slate-200"><strong class="text-blue-400">Location:</strong> Salalah, Oman</p>
+                <p class="text-xl text-slate-200"><strong class="text-blue-400">GitHub:</strong> <a href="https://github.com/Norozahmed" target="_blank" class="animated-underline">github.com/NorozAhmed</a></p>
+            </div>
+        </section>
+
+        <footer class="w-full max-w-4xl text-center text-slate-500 text-sm pt-8">
+            <p>&copy; 2025 Noroz Ahmed. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Skills slider drag functionality
+        const track = document.getElementById('skillsTrack');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        track.addEventListener('mousedown', (e) => {
+            isDown = true;
+            track.style.animationPlayState = 'paused';
+            startX = e.pageX - track.offsetLeft;
+            scrollLeft = track.scrollLeft;
+        });
+
+        track.addEventListener('mouseleave', () => {
+            isDown = false;
+            track.style.animationPlayState = 'running';
+        });
+
+        track.addEventListener('mouseup', () => {
+            isDown = false;
+            track.style.animationPlayState = 'running';
+        });
+
+        track.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - track.offsetLeft;
+            const walk = (x - startX) * 2;
+            track.scrollLeft = scrollLeft - walk;
+        });
+
+        // Touch events
+        track.addEventListener('touchstart', (e) => {
+            isDown = true;
+            track.style.animationPlayState = 'paused';
+            startX = e.touches[0].pageX - track.offsetLeft;
+            scrollLeft = track.scrollLeft;
+        });
+
+        track.addEventListener('touchend', () => {
+            isDown = false;
+            track.style.animationPlayState = 'running';
+        });
+
+        track.addEventListener('touchmove', (e) => {
+            if (!isDown) return;
+            const x = e.touches[0].pageX - track.offsetLeft;
+            const walk = (x - startX) * 2;
+            track.scrollLeft = scrollLeft - walk;
+        });
+    </script>
+</body>
+</html>
