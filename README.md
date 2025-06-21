@@ -1,6 +1,6 @@
 # Noroz Ahmed - Software Developer Portfolio
 
-![Portfolio Preview](images/port_image.png)
+![Portfolio Preview](images/Portfolio.png)
 
 ## 🌟 Overview
 
