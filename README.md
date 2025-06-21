@@ -45,7 +45,7 @@ A modern, responsive personal portfolio website showcasing the skills, projects,
 
 ```
 MyPortfolio/
-├── Portfolio.html          # Main HTML file
+├── index.html          # Main HTML file
 ├── styles.css              # Custom CSS styles
 ├── script.js               # JavaScript functionality
 ├── README.md               # Project documentation
