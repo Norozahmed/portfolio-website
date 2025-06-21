@@ -52,7 +52,7 @@ MyPortfolio/
 ├── images/                 # Project assets
 │   ├── Profile/
 │   │   ├── MyIMG.jpg       # Profile picture
-│   │   └── NAlogo.png      # Logo
+│   │  
 │   ├── port_image.png      # Portfolio preview
 │   ├── Ai_Assist.mp4       # AI Assistant demo video
 │   ├── avoidence_game.png  # Avoidance game screenshot
